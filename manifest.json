@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "WebsiteInfoExtractPlugin",
+    "version": "1.0",
+    "description": "Grabs info from a webpage when Ctrl+B is pressed",
+    "permissions": ["scripting", "activeTab"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "commands": {
+      "grab-info": {
+        "suggested_key": {
+          "default": "Ctrl+B"
+        },
+        "description": "Grab info from the page"
+      },
+      "print-info": {
+        "suggested_key": {
+          "default": "Ctrl+I"
+        },
+        "description": "Print price description info"
+      }
+    },
+    "host_permissions": ["<all_urls>"],
+    "action": {
+      "default_title": "WebsiteInfoExtractPlugin",
+      "default_popup": "popup.html",
+      "default_title": "WebsiteInfoExtractPlugin"
+    }
+}
