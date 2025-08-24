@@ -2,10 +2,15 @@
 window.priceDescHistory = window.priceDescHistory || [];
 
 (() => {
-  const priceElement = document.querySelector(".IZPeQz.B67UQ0");
-  const price = priceElement?.innerText || "❌ Price not found";
+  ////////////////////////////
+  // Change this priceElement and descParent here to the html class that you want to copy
+  // Currently code is used to copy for Shopee website price and description
 
+  const priceElement = document.querySelector(".IZPeQz.B67UQ0");
   const descParent = document.querySelector(".e8lZp3");
+  ///////////////////////////
+  
+  const price = priceElement?.innerText || "❌ Price not found";
   let descriptions = "❌ No descriptions found";
 
   if (descParent) {
