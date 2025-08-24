@@ -30,6 +30,34 @@ window.priceDescHistory = window.priceDescHistory || [];
 
   console.log("📦 Stored:", window.priceDescHistory);
 
-  alert(`📝 Price:\n${price}\n\n🧩 Description:\n• ${descriptions}`);
-  navigator.clipboard.writeText(`📝 Price:\n${price}\n\n🧩 Description:\n• ${descriptions}`);
+  const textToCopy = `📝 Price:\n${price}\n\n🧩 Description:\n• ${descriptions}`;
+  alert(textToCopy);
+
+
+  // Try modern API first
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(textToCopy).catch(err => {
+      console.warn("Clipboard API failed, using fallback:", err);
+
+      // Fallback for older/blocked environments
+      const textarea = document.createElement("textarea");
+      textarea.value = textToCopy;
+      textarea.style.position = "fixed"; // avoid scrolling to bottom
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    });
+  } else {
+    // Directly fallback if API isn’t available
+    const textarea = document.createElement("textarea");
+    textarea.value = textToCopy;
+    textarea.style.position = "fixed";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+  }
 })();
